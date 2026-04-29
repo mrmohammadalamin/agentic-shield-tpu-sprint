@@ -1,0 +1,67 @@
+# Goal Description
+
+The goal is to build, deploy, and showcase **Agentic-Shield**, an autonomous Cloud Security SRE powered by a specialized Gemma-3 model. This project leverages Google Cloud TPUs, JAX, and the Tunix library to implement Group Relative Policy Optimization (GRPO). 
+
+By completing this plan, we will create a high-impact, end-to-end demonstration that proves your technical mastery of the modern Google AI stack (TPUs, JAX, Gemma-3) and solves a critical enterprise security problem.
+
+## 1. Deep Analysis: The Problem & Our Winning Solution
+
+To win the sprint, we must clearly explain the massive value Agentic-Shield provides.
+
+### The Problem in Enterprise Cloud Security
+1. **Alert Fatigue & Complexity**: Cloud environments generate massive, complex JSON audit logs. Human SREs are overwhelmed and struggle to parse them quickly during an active attack.
+2. **The Flaw in Standard LLMs**: Standard LLMs can summarize logs, but they are dangerous if allowed to execute remediation commands autonomously. They hallucinate and often violate strict security policies (e.g., suggesting to open an SSH port to "fix connectivity").
+3. **The Cost of Alignment**: Traditional reinforcement learning (like PPO) requires a separate "Critic" model to evaluate the LLM's actions. This doubles the memory requirement, making it expensive and difficult to scale.
+
+### The Solution: Agentic-Shield (Why Judges Will Love This)
+1. **Hardware & Framework Mastery**: We use **TPUs and JAX (Tunix)** to efficiently fine-tune Gemma-3.
+2. **Cutting-Edge Alignment (GRPO)**: Instead of using a bulky Critic model, we use **GRPO**. It samples multiple reasoning traces and scores them against strict programmatic rules. This efficiently bakes **"Negative Constraints"** (e.g., *never* allow public SSH access, *never* delete a production database) directly into the model's weights.
+3. **Transparent Autonomy**: Before outputting a command, the model generates a `<think>` block (Reasoning Trace). This allows human oversight of the AI's logic, building trust for enterprise adoption.
+
+### The Winning Demo Scenario
+We will demo a simulated attack:
+1. **The Trigger**: A JSON log streams in showing a compromised service account trying to modify firewall rules.
+2. **The AI's Turn**: The frontend visually streams the AI's "Reasoning Trace" as it breaks down the JSON, identifies the threat, and recalls its "Negative Constraints."
+3. **The Climax**: The AI outputs the exact, safe `gcloud` command to revoke the service account without breaking unrelated production traffic.
+
+---
+
+## 2. Phase-by-Phase Execution Plan
+
+### Phase 1: Google Cloud TPU Configuration
+We need to set up the TPU environment for JAX and Tunix.
+*   **Step 1:** Provision a Google Cloud Compute Engine VM with attached TPUs (e.g., Cloud TPU v5e or v4, depending on sprint quota).
+*   **Step 2:** Install the JAX TPU wheels and PyTorch/XLA.
+*   **Step 3:** Clone and configure the Tunix library for Gemma-3.
+*   **Step 4:** Set up Hugging Face authentication to download Gemma-3 (4B or 12B).
+
+### Phase 2: Dataset & GRPO Training (Backend)
+*   **Dataset Generation:** We will synthesize a dataset of GCP JSON audit logs paired with malicious actions and the required safe remediation commands.
+*   **Reward Function Engineering:** We will write a deterministic Python reward function for GRPO. It will penalize the model heavily (-10) if the output contains restricted commands (like `gcloud compute firewall-rules create --allow tcp:22`), and reward it (+1) for correct reasoning formatting and safe remediation.
+*   **Training Script:** Write the Tunix JAX script to execute the GRPO fine-tuning loop on the TPU.
+
+### Phase 3: Serving & Backend API
+*   **Inference Server:** We will serve the fine-tuned Gemma-3 model. For maximum speed, we can serve it using vLLM (if using GPU for inference later) or an optimized JAX serving script on the TPU.
+*   **FastAPI Backend:** Create a simple Python FastAPI server that receives mock JSON logs from the frontend, sends them to the model, and streams back the `<think>` reasoning trace and final command.
+
+### Phase 4: Frontend Dashboard (The "Wow" Factor)
+We need a sleek, "hacker-style" dark mode dashboard. We will build this using a modern web framework (like Next.js/React or even Streamlit if we want to move extremely fast).
+*   **Left Panel:** A live-streaming feed of simulated Google Cloud JSON audit logs.
+*   **Center Panel:** The "Agentic-Shield Brain". A visually striking area that streams the model's `<think>` reasoning token-by-token.
+*   **Right Panel:** The "Action Hub" where the final safe remediation command is proposed and verified against constraints.
+
+### Phase 5: Demo Recording & Pitch Preparation
+*   **Testing:** We will test 3 distinct scenarios (e.g., IAM escalation, Firewall breach, Storage bucket exposure).
+*   **Recording:** Capture screen recordings (using tools like OBS or the browser's built-in tools) showing the UI reacting in real-time. We'll ensure the `<think>` process is highly readable.
+
+---
+
+## User Review Required
+
+> [!IMPORTANT]
+> Please review this plan. To proceed, I need your input on a few technical choices:
+> 
+> 1.  **Frontend Framework:** Do you prefer we build the frontend using **Streamlit** (very fast to build in Python, great for AI demos) or a full web app using **Next.js/React** (looks more premium, but takes slightly longer)?
+> 2.  **TPU Quota:** Do you already have access to your GCP project and know which TPU version (v4, v5e, etc.) you have quota for in the Sprint?
+> 
+> Once you approve, we will begin writing the dataset and the initial TPU setup scripts!

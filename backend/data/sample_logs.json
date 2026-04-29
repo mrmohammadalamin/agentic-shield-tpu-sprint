@@ -1,0 +1,45 @@
+[
+  {
+    "insertId": "1a2b3c4d5e",
+    "logName": "projects/my-gcp-project/logs/cloudaudit.googleapis.com%2Factivity",
+    "resource": {
+      "type": "gce_firewall_rule",
+      "labels": {
+        "project_id": "my-gcp-project",
+        "firewall_rule_id": "allow-all-ssh"
+      }
+    },
+    "timestamp": "2026-04-26T12:05:00Z",
+    "severity": "NOTICE",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "compromised-dev@my-gcp-project.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "203.0.113.42",
+        "callerNetwork": "internet"
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.firewalls.insert",
+      "authorizationInfo": [
+        {
+          "resource": "projects/my-gcp-project/global/firewalls/allow-all-ssh",
+          "permission": "compute.firewalls.create",
+          "granted": true
+        }
+      ],
+      "request": {
+        "name": "allow-all-ssh",
+        "network": "projects/my-gcp-project/global/networks/default",
+        "allowed": [
+          {
+            "IPProtocol": "tcp",
+            "ports": ["22"]
+          }
+        ],
+        "sourceRanges": ["0.0.0.0/0"]
+      }
+    }
+  }
+]

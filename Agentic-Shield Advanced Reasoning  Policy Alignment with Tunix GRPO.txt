@@ -1,0 +1,7 @@
+86 project
+TPU, JAX, vLLM, PyTorch on XLA or TPU
+JAX: Totorial on Tunix post training on LLMs for specific domains
+Agentic-Shield: Advanced Reasoning & Policy Alignment with Tunix GRPO
+
+Agentic-Shield is a specialized Gemma-3 model (4B/12B) designed to act as an autonomous Cloud Security SRE. The core of the project is the implementation of Group Relative Policy Optimization (GRPO)—the cutting-edge reinforcement learning algorithm—using the Tunix library. The model is trained to analyze complex Google Cloud JSON logs and output a structured "Reasoning Trace" before providing a security remediation command. By utilizing GRPO on TPUs, the project demonstrates how to align models with "Negative Constraints" (e.g., never allowing public SSH access) without the memory overhead of a separate Critic model
+
