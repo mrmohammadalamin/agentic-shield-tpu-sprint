@@ -12,10 +12,10 @@
 ![Dashboard Overview](./assets/images/agentic-sheild-2.png)
 
 ### Video Walkthroughs
-*   **Real-Time Log Analysis:** [Watch Demo](./assets/videos/Recording%202026-04-27%20225603.mp4)
-*   **GRPO Policy Enforcement:** [Watch Reasoning Trace](./assets/videos/Recording%202026-04-27%20205744-updated.mp4)
+*   **Real-Time Log Analysis:** [Watch Demo](https://img.youtube.com/vi/squ6vNK1wo4/0.jpg)](https://www.youtube.com/watch?v=squ6vNK1wo4)
+*   **GRPO Policy Enforcement:** [Watch Reasoning Trace](https://img.youtube.com/vi/squ6vNK1wo4/0.jpg)](https://www.youtube.com/watch?v=squ6vNK1wo4)
 
----
+
 
 ## 🚀 The Critical Challenge: LLM Safety in Cloud Ops
 
