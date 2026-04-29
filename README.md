@@ -70,6 +70,12 @@ A Next.js frontend that visualizes the "Agentic Brain" streaming its reasoning t
 | :---: | :---: |
 | ![TPU](./assets/images/Screenshot%202026-04-27%20at%2022-51-47%20agentic-shield-tpu%20–%20TPUs%20–%20Compute%20Engine%20–%20My%20Project%2045563-tp…%20–%20Google%20Cloud%20console.png) | ![UI](./assets/images/screen-sheild1-update.png) |
 
+## 📚 Tutorials & Documentation
+
+For a deeper dive into the architecture and step-by-step building process, check out our detailed guides:
+*   **[Full Implementation Blog](./tutorial_blog.md)** - A technical deep dive into GRPO, Tunix, and the reward functions.
+*   **[Agentic-Shield Guide](./agentic_shield_guide.md)** - Comprehensive use-case analysis and architecture breakdown.
+
 ---
 
 ## 🏗️ Getting Started
